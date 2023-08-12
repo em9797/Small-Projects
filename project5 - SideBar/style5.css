@@ -166,7 +166,7 @@ Sidebar
   color: var(--clr-primary-5);
   transition: var(--transition);
   cursor: pointer;
-  animation: bounce 2s ease-in-out infinite;
+  animation: bounce 3s ease-in-out infinite;
 }
 .sidebar-toggle:hover {
   color: var(--clr-primary-7);
@@ -200,7 +200,7 @@ Sidebar
 }
 .close-btn:hover {
   color: var(--clr-red-light);
-  transform: rotate(360deg);
+  transform: rotate(180deg);
 }
 .logo {
   justify-self: center;
@@ -252,8 +252,8 @@ Sidebar
 .show-sidebar {
   transform: translate(0);
 }
-@media screen and (min-width: 676px) {
+@media screen and (min-width: 800px) {
   .sidebar {
-    width: 400px;
+    width: 600px;
   }
 }

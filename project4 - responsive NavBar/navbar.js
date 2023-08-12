@@ -1,6 +1,6 @@
 const toggleBtn = document.querySelector(".nav-toggle");
 const links = document.querySelector(".links");
-
+const social = document.querySelector(".social-icons");
 // toggle - toggles class
 toggleBtn.addEventListener("click", () => {
     links.classList.toggle("show-links");
