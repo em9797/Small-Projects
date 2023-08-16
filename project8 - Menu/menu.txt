@@ -1,0 +1,156 @@
+//menu items
+const menu = [
+    {
+      id: 1,
+      title: "Japanese souffle pancakes",
+      category: "breakfast",
+      price: 17,
+      img: "./images/item-1.jpeg",
+      desc: `fluffy pancakes with mapple syrup, whipped cream, fresh strawberry, sliced bananas, and powder sugar`,
+    },
+    {
+      id: 2,
+      title: "teishoku style lunch with mackerel",
+      category: "lunch",
+      price: 30,
+      img: "./images/item-2.jpg",
+      desc: `miso soup with wakame and tofu, Japanese rice, grilled mackarel, tamagoyaki omelette, marinated shiitake mushrooms, wakame seaweed salad with pickled cucumber and edamane, fresh fruits`,
+    },
+    {
+      id: 3,
+      title: "gyoza dumplings",
+      category: "lunch",
+      price: 26,
+      img: "./images/item-3.jpg",
+      desc: `with pork | 8 pcs OR with vegetables: cabbage, carrots, leek, onion | 8 pcs`,
+    },
+    {
+      id: 4,
+      title: "Shokupan toasts",
+      category: "breakfast",
+      price: 20,
+      img: "./images/item-4.jpg",
+      desc: `toasted shokupan, mashed edamane paste, cucumber, spouts and young green, chives oil, fried egg`,
+    },
+    {
+      id: 5,
+      title: "matcha latte",
+      category: "drinks",
+      price: 14,
+      img: "./images/item-5.jpg",
+      desc: `served hot or cold. Alternative milk: soy, oat, lactose-free`,
+    },
+    {
+      id: 6,
+      title: "hojicha tea",
+      category: "drinks",
+      price: 16,
+      img: "./images/item-6.jpg",
+      desc: `roasted, Japanese green tea with small amount of thein. One of the most popular teas in Japan`,
+    },
+    {
+      id: 7,
+      title: "dorayaki",
+      category: "desserts",
+      price: 19,
+      img: "./images/item-7.jpg",
+      desc: `with mascapone cream, sweet cherries and fresh strawberries`,
+    },
+    {
+      id: 8,
+      title: "matcha tiramisu",
+      category: "desserts",
+      price: 15,
+      img: "./images/item-8.jpg",
+      desc: `mascapone, custard type filling, ceremonial match powder, `,
+    },
+    {
+      id: 9,
+      title: "soba salad with peanut sauce",
+      category: "lunch",
+      price: 26,
+      img: "./images/item-9.jpg",
+      desc: `soba noodles, fresh vegetables, peanut butter and gochujang paste dressing`,
+    },
+    {
+        id: 10,
+        title: "Japanese egg sandwich",
+        category: "breakfast",
+        price: 17,
+        img: "./images/item-10.jpg",
+        desc: `creamy scrambled egg, mayo, chives, Japanese shokupan toast`,
+      },
+  ];
+
+  const sectionCenter = document.querySelector(".section-center");
+  const filterBtn = document.querySelectorAll(".filter-btn");
+
+//loads items
+  window.addEventListener("DOMContentLoaded", () => {
+    //pass menu array as an argument, added after refactoring
+    displayMenuItems(menu);
+    });
+
+//filters items
+filterBtn.forEach(function(btn) {
+    btn.addEventListener("click", (e) => {
+        // console.log(e.currentTarget.dataset.id)
+      const category = e.currentTarget.dataset.id;
+      const menuCategory = menu.filter(function(menuItem) {
+        if (menuItem.category  === category) {
+          return menuItem;
+        }
+      })
+      if(category === "all") {
+        displayMenuItems(menu);
+      }
+      else {
+        displayMenuItems(menuCategory);
+      }
+    })
+})
+
+
+
+    //code before refactoring
+    // let displayMenu = menu.map(function(item) {
+    //      return `<article class="menu-item">
+    //      <img src="${item.img}" class="photo" alt="${item.title}"/>
+    //      <div class="item-info">
+    //          <header>
+    //              <h4>${item.title}</h4>
+    //              <h4 class="price">PLN ${item.price}</h4>
+    //          </header>
+    //          <p class="item-text">${item.desc}</p>
+    //      </div>
+    //  </article>`
+    // });
+        
+    // displayMenu = displayMenu.join("");
+    //console.log(displayMenu);
+    // sectionCenter.innerHTML = displayMenu;
+
+ 
+
+  //code after refactoring
+  //added function displayMenuItems() to use filter() method in the next step
+  function displayMenuItems(menuitems) {
+    let displayMenu = menuitems.map(function(item) {
+        return `<article class="menu-item">
+        <img src="${item.img}" class="photo" alt="${item.title}"/>
+        <div class="item-info">
+            <header>
+                <h4>${item.title}</h4>
+                <h4 class="price">PLN ${item.price}</h4>
+            </header>
+            <p class="item-text">${item.desc}</p>
+        </div>
+    </article>`
+   });
+       
+   displayMenu = displayMenu.join("");
+
+   sectionCenter.innerHTML = displayMenu;
+
+  }
+
